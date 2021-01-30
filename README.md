@@ -6,7 +6,7 @@ This control will allow you to display an integer or a decimal as a % control.
 
 ## Download
 
-[DOWNLOAD LATEST RELEASE](https://github.com/victorsolaya/Multiselect_Records_PCF/releases/latest)
+[DOWNLOAD LATEST RELEASE](https://github.com/victorsolaya/progress-control-pcf/releases/latest)
 
 ## How to configure
 
