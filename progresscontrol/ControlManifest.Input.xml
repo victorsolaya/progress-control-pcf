@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="victorsanchez" constructor="progresscontrol" version="0.0.1" display-name-key="progresscontrol" description-key="progresscontrol description" control-type="standard">
+    <property name="field" display-name-key="Field" description-key="Field to get the value from" of-type-group="numbers" usage="bound" required="true" />
+    <property name="is100MaximumValue" display-name-key="Is 100% maximum value?" description-key="Check if the control will limit to 100%" of-type="Enum" usage="input" required="true">
+      <value name="true" display-name-key="True" description-key="true">True</value>
+      <value name="false" display-name-key="False" description-key="false">False</value>
+    </property>
+    <property name="configCSSPath" display-name-key="Configuration Webresource CSS Relative Path" description-key="E.g. /Webresources/vso/css/styles.css" of-type="SingleLine.Text" usage="input" required="false" />
+    <type-group name="numbers">
+      <type>Whole.None</type>
+      <type>FP</type>
+      <type>Decimal</type>
+    </type-group>
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/progresscontrol.css" order="1" />
+    </resources>
+  </control>
+</manifest>

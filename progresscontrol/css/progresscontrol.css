@@ -1,0 +1,75 @@
+
+.containerCircularVSPCF .circular{
+  height: 100px;
+  width: 100px;
+  position: relative;
+  display:flex;
+}
+.containerCircularVSPCF .circular .inner, .circular .outer,.containerCircularVSPCF  .circular .circle{
+  position: absolute;
+  z-index: 6;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.2);
+}
+.containerCircularVSPCF .circular .inner{
+  top: 50%;
+  left: 50%;
+  height: 80px;
+  width: 80px;
+  margin: -40px 0 0 -40px;
+  border-radius: 100%;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  background: #dde6f0;
+}
+.containerCircularVSPCF .circular .circle{
+  z-index: 1;
+  box-shadow: none;
+}
+.containerCircularVSPCF .circular .numb{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 18px;
+  font-weight: 500;
+  color: #4158d0;
+}
+.containerCircularVSPCF .circular .bar{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  -webkit-border-radius: 100%;
+  clip: rect(0px, 100px, 100px, 50px);
+}
+.containerCircularVSPCF .circle .bar .progress{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-border-radius: 100%;
+  clip: rect(0px, 50px, 100px, 0px);
+}
+.containerCircularVSPCF .circle .bar .progress,.containerCircularVSPCF .dot span{
+  background: #4158d0;
+}
+.containerCircularVSPCF .circle .left .progress {
+  z-index: 1;
+}
+
+.containerCircularVSPCF .circle .right{
+  z-index: 3;
+  transform: rotate(180deg);
+}
+
+.containerCircularVSPCF .circle .dot{
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  height: 10px;
+  margin-top: -5px;
+}
