@@ -10,6 +10,7 @@ export class progresscontrol implements ComponentFramework.StandardControl<IInpu
 	cssPath: string | null;
 	setMaximumValue: string;
 	setMaximumValueBool: boolean;
+	fieldid: string | undefined;
 
 	/**
 	 * Empty constructor.
@@ -30,18 +31,20 @@ export class progresscontrol implements ComponentFramework.StandardControl<IInpu
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{
 		// Add control initialization code
+		this.fieldid = context.parameters.field.attributes?.LogicalName;
 		this.setMaximumValue = context.parameters.is100MaximumValue.raw || "True";
 		this.setMaximumValueBool = this.setMaximumValue.toLowerCase() == "true" ? true : false;
+		this.container = container;
+
 		this.notifyOutputChanged = notifyOutputChanged;
 		this.cssPath = null//context.parameters.configCSSPath.raw || null;
 		if(this.cssPath != null) {
-			const cssProgressControlLink = document.querySelector("link[href*='css/progresscontrol']")
+			const cssProgressControlLink = this.container.querySelector("link[href*='css/progresscontrol']")
 			cssProgressControlLink?.setAttribute("href", this.cssPath)
 		}
 		let timeout: any = 0;
-		this.container = container;
 		this.initializeHTML();
-		const numb = (document.querySelector('.numb') as HTMLDivElement)
+		const numb = (this.container.querySelector('.numb') as HTMLDivElement)
 		numb.addEventListener("input", (eventTarget: any) => {
 			clearTimeout(timeout);
 			timeout = setTimeout(() => {
@@ -53,8 +56,8 @@ export class progresscontrol implements ComponentFramework.StandardControl<IInpu
 				}
 				const prevValue = this.number;
 				this.number = parseInt(value as string);
-				const calculations = returnCalculations(this.number);
-				setCalculations(calculations);
+				const calculations = returnCalculations(this.container, this.number);
+				setCalculations(this.container, calculations);
 				if(prevValue !== value) {
 					this.notifyOutputChanged();
 				}
@@ -73,8 +76,8 @@ export class progresscontrol implements ComponentFramework.StandardControl<IInpu
 	{
 		this.isControlDisabled = context.mode.isControlDisabled;
 		this.isControlVisible = context.mode.isVisible;
-		const circularContainer = document.querySelector('.containerCircularVSPCF') as HTMLDivElement;
-		const numb = document.querySelector('.numb') as HTMLDivElement;
+		const circularContainer = this.container.querySelector('.containerCircularVSPCF') as HTMLDivElement;
+		const numb = this.container.querySelector('.numb') as HTMLDivElement;
 		if(this.isControlVisible == false) {
 			circularContainer.style.display = "none";
 		} 
@@ -97,8 +100,8 @@ export class progresscontrol implements ComponentFramework.StandardControl<IInpu
 					this.notifyOutputChanged();
 				}
 			}
-			const calculations = returnCalculations(this.number);
-			setCalculations(calculations);
+			const calculations = returnCalculations(this.container, this.number);
+			setCalculations(this.container, calculations);
 		}
 	}
 

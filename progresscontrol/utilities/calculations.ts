@@ -3,8 +3,8 @@ export interface Calculations {
 	calculationRight: number
 }
     
-export function returnCalculations(number: number) : Calculations {
-    const numb = (document.querySelector('.numb') as HTMLDivElement)
+export function returnCalculations(container: HTMLDivElement, number: number) : Calculations {
+    const numb = (container.querySelector('.numb') as HTMLDivElement)
     const percentageStringify: string = number != null ? number?.toString() : "0";
     numb.innerHTML = `${percentageStringify}<span>%</span>`;
     const calculations: Calculations = doCalculations(number);
@@ -31,9 +31,9 @@ export function doCalculations(int: number) : Calculations {
     return calculations;
 }
 
-export function setCalculations(calculations: Calculations): void {
-    const progressElementLeft = document.querySelector('.circle .left .progress') as HTMLDivElement;
-    const progressElementRight = document.querySelector('.circle .right .progress') as HTMLDivElement;
+export function setCalculations(container: HTMLDivElement, calculations: Calculations): void {
+    const progressElementLeft = container.querySelector('.circle .left .progress') as HTMLDivElement;
+    const progressElementRight = container.querySelector('.circle .right .progress') as HTMLDivElement;
     progressElementLeft.style.transform = `rotate(${calculations.calculationLeft}deg)`;
     progressElementRight.style.transform = `rotate(${calculations.calculationRight}deg)`;
 }
